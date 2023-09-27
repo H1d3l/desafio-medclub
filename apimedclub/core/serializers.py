@@ -1,10 +1,14 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+
+from django.db.models import Q
 from .models import *
 
 
-class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
@@ -13,10 +17,12 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
-        help_text='Leave empty if no change needed',
         style={'input_type': 'password', 'placeholder': 'Password'},
-
     )
+    username = serializers.CharField(
+        validators=[UniqueValidator(queryset=User.objects.all(), message="There is already a user with this username in our records")])
+    email = serializers.CharField(
+        validators=[UniqueValidator(queryset=User.objects.all(), message="There is already a user with this email in our records")],)
 
     profile = ProfileSerializer()
 
@@ -60,7 +66,6 @@ class UserSerializer(serializers.ModelSerializer):
 
     def partial_update(self, instance, validated_data):
         for attr, value in validated_data.items():
-            print("{}={}".format(attr, value))
             setattr(instance, attr, value)
 
         if 'password' in validated_data:

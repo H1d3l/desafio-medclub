@@ -1,14 +1,13 @@
 from django.contrib.auth.models import User
-from .models import *
-from .serializers import *
 from rest_framework import viewsets
-from rest_framework.views import APIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import  IsAuthenticated
 from django.shortcuts import get_object_or_404
 
+from .models import *
+from .serializers import *
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,7 +26,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['GET'])
     def get_profile_by_user_id(self, request, pk=None):
         user = get_object_or_404(User, pk=pk)
-
         profile = Profile.objects.get(user = user)
         serializer = ProfileSerializer(profile,context={'request': request})
         return Response(serializer.data)

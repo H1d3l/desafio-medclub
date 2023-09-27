@@ -20,8 +20,8 @@ from rest_framework import routers
 from core.views import *
 
 router = routers.DefaultRouter()
-router.register(r'user', UserViewSet)
-router.register(r'profile', ProfileViewSet)
+router.register(r'api/v1/user', UserViewSet)
+router.register(r'api/v1/profile', ProfileViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
