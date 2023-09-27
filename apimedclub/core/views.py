@@ -31,5 +31,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-
-
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
