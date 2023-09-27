@@ -22,6 +22,7 @@ from core.views import *
 router = routers.DefaultRouter()
 router.register(r'api/v1/user', UserViewSet)
 router.register(r'api/v1/profile', ProfileViewSet)
+router.register(r'api/v1/item', ItemViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
