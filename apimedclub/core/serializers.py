@@ -9,7 +9,6 @@ from .models import *
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Profile
         fields = ('url', 'full_name')
@@ -76,6 +75,17 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ItemSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(
+    validators=[UniqueValidator(queryset=Item.objects.all(), message="There is already a item with this name in our records")])
     class Meta:
         model = Item
         fields = '__all__'
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Item.objects.all())
+
+    class Meta:
+        model = Order
+        fields = ('user', 'items')

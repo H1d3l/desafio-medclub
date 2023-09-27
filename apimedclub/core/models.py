@@ -7,7 +7,7 @@ class Profile(models.Model):
     full_name = models.CharField(max_length=255)
     
     def __str__(self):
-        return self.username
+        return self.user.username
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
