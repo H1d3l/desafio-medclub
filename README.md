@@ -30,7 +30,7 @@ Este é um projeto Django Rest Framework que implementa uma API RESTful para ger
 - djangorestframework==3.14.0
 - drf-spectacular==0.26.5
 
-## 🔖 Modelagem do projeto
+## 📋 Modelagem do projeto
 
 ![Diagrama de classe](apimedclub/apimedclub/docs/diagrama.png)
 
@@ -63,7 +63,7 @@ Este é um projeto Django Rest Framework que implementa uma API RESTful para ger
    ```bash
    python manage.py runserver
    ```
-6. Acesse o projeto em http://localhost:8000/:
+7. Acesse o projeto em http://localhost:8000/
 
 ## Endpoints
 
@@ -71,3 +71,50 @@ A documentação dos endpoints do projeto está disponível através do Swagger.
 Para realizar as requisições será necessário informar o username e password do superuser criado anteriormente.
 - Para acessar a documentação, vá para http://127.0.0.1:8000/api/schema/swagger-ui/#/ .
 - Você também pode usar a interface ReDoc acessando http://127.0.0.1:8000/api/schema/redoc/ para uma visualização mais amigável da documentação.
+
+### Endpoints disponíveis
+
+| uri 										| Funcionalidade |
+|:---:										|:----------------|
+| user/ 				| Listagem e cadastro de usuários |
+| user/{id}/ 				| Acesso aos dados de um usuários específico  |
+|	user/{id}/										| Atualização e exclusão de dados de acordo com o ID passado |
+| profile/ 			| Listagem do perfil de todos os usuários |
+| profile/{id}/ 			| Atualização e exclusão de dados de acordo com o ID passado |
+| profile/{id}/get_profile_by_user_id/ 			| Obtém as informações do perfil de um usuário |
+| order/ 			| Listagem e cadastro de pedidos|
+| order/{id}/										| Atualização e exclusão de dados de acordo com o ID passado |
+| order/{id}/										| Acesso aos dados de um pedido específico
+| order/{id}/get_order_by_profile_id/ 				| Obtém as informações do pedido de um usuário |
+| item/			| Listagem e cadastro de item |
+| item/{id}/											| Acesso aos dados de um item específico |
+| item/{id}/											| Atualização e exclusão de dados de acordo com o ID passado |
+|
+
+### Formatos das requisições
+```json
+User{
+    "profile": {
+      "full_name": "string"
+    },
+    "username": "string",
+    "email": "string",
+    "password": "string"
+}
+
+Profile   {
+    "full_name": "string"
+}
+
+Item   {
+  "name": "string",
+  "price": "decimal"
+}
+
+Order   {
+    "user": "id",
+    "items": [
+      "id"
+    ]
+  }
+```
