@@ -15,7 +15,7 @@ idna==3.4
 inflection==0.5.1
 itypes==1.2.0
 Jinja2==3.1.2
-jsonschema==4.19.1
+jsonschema==4.17.0
 jsonschema-specifications==2023.7.1
 Markdown==3.4.4
 MarkupSafe==2.1.3
