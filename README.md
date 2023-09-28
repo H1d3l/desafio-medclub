@@ -54,6 +54,8 @@ Este é um projeto Django Rest Framework que implementa uma API RESTful para ger
    ```bash
    cd apimedclub
    python manage.py migrate
+   python manage.py makemigrations
+   python manage.py migrate
    ```
 5. Crie um superuser para acessar a API:
    ```bash
