@@ -11,7 +11,7 @@ from .models import *
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('url', 'full_name')
+        fields = ('full_name',)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -27,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'profile', 'username', 'email', 'password')
+        fields = ('profile', 'username', 'email', 'password')
 
     def create(self, validated_data):
         profile_data = validated_data['profile']

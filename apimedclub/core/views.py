@@ -127,7 +127,7 @@ class OrderViewSet(viewsets.ModelViewSet):
             return Response({"detail": "Order not found."}, status=status.HTTP_404_NOT_FOUND)
     
     @action(detail=True, methods=['GET'])
-    def get_order_by_user_id(self, request, pk=None):
+    def get_order_by_profile_id(self, request, pk=None):
         try:
             profile = Profile.objects.get(pk=pk)
             order = Order.objects.filter(user=profile)
