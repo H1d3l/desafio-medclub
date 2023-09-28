@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'rest_framework'
+    'rest_framework',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -130,5 +131,14 @@ REST_FRAMEWORK = {
     ]
     ,'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API RESTful Medclub',
+    'DESCRIPTION': 'Este é um projeto Django Rest Framework que implementa uma API RESTful para gerenciar usuários, pedidos e itens.',
+    'VERSION': '1.0.0',
+    # OTHER SETTINGS
 }
